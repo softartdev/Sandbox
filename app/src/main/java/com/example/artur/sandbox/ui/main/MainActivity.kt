@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.artur.sandbox.R
 import com.example.artur.sandbox.ui.login.LoginActivity
+import com.example.artur.sandbox.ui.master.ItemListActivity
 import com.example.artur.sandbox.ui.settings.SettingsActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         login_button.setOnClickListener { startActivity(Intent(this, LoginActivity::class.java)) }
 
         chrome_button.setOnClickListener { chromeCustomTab() }
+
+        items_button.setOnClickListener { startActivity(Intent(this, ItemListActivity::class.java)) }
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

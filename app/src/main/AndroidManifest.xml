@@ -42,6 +42,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.artur.sandbox.ui.main.MainActivity" />
         </activity>
+        <activity
+            android:name=".ui.master.ItemListActivity"
+            android:label="@string/title_item_list"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.artur.sandbox.ui.main.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.master.ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".ui.master.ItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.artur.sandbox.ui.master.ItemListActivity" />
+        </activity>
     </application>
 
 </manifest>
