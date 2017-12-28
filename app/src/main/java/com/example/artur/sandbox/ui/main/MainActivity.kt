@@ -12,6 +12,7 @@ import com.example.artur.sandbox.R
 import com.example.artur.sandbox.ui.login.LoginActivity
 import com.example.artur.sandbox.ui.map.CurrentLocationActivity
 import com.example.artur.sandbox.ui.map.CurrentPlaceActivity
+import com.example.artur.sandbox.ui.map.LocationUpdatesActivity
 import com.example.artur.sandbox.ui.map.MapsActivity
 import com.example.artur.sandbox.ui.master.ItemListActivity
 import com.example.artur.sandbox.ui.settings.SettingsActivity
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         maps_button.setOnClickListener { startActivity(Intent(this, MapsActivity::class.java)) }
         current_place_button.setOnClickListener { startActivity(Intent(this, CurrentPlaceActivity::class.java)) }
         current_location_button.setOnClickListener { startActivity(Intent(this, CurrentLocationActivity::class.java)) }
+        location_updates_button.setOnClickListener { startActivity(Intent(this, LocationUpdatesActivity::class.java)) }
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
