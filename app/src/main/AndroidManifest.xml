@@ -98,10 +98,19 @@
         <service
             android:name=".service.LocationUpdatesService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="false" />
+
         <activity
             android:name=".ui.map.LocationUpdatesActivity"
             android:label="@string/title_activity_current_location">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.artur.sandbox.ui.main.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.distance.DistanceTrackerActivity"
+            android:label="@string/distance_tracker">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.artur.sandbox.ui.main.MainActivity" />
