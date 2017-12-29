@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.artur.sandbox.R
+import com.example.artur.sandbox.ui.distance.DistanceTrackerActivity
 import com.example.artur.sandbox.ui.login.LoginActivity
+import com.example.artur.sandbox.ui.map.*
 import com.example.artur.sandbox.ui.master.ItemListActivity
 import com.example.artur.sandbox.ui.settings.SettingsActivity
 
@@ -24,10 +26,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         login_button.setOnClickListener { startActivity(Intent(this, LoginActivity::class.java)) }
-
         chrome_button.setOnClickListener { chromeCustomTab() }
-
         items_button.setOnClickListener { startActivity(Intent(this, ItemListActivity::class.java)) }
+        maps_button.setOnClickListener { startActivity(Intent(this, MapsActivity::class.java)) }
+        current_place_button.setOnClickListener { startActivity(Intent(this, CurrentPlaceActivity::class.java)) }
+        current_location_button.setOnClickListener { startActivity(Intent(this, CurrentLocationActivity::class.java)) }
+        location_updates_button.setOnClickListener { startActivity(Intent(this, LocationUpdatesActivity::class.java)) }
+        distance_tracker_button.setOnClickListener { startActivity(Intent(this, DistanceTrackerActivity::class.java)) }
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
