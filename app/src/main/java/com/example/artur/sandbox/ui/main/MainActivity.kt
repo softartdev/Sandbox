@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.artur.sandbox.R
 import com.example.artur.sandbox.ui.distance.DistanceTrackerActivity
+import com.example.artur.sandbox.ui.drawer.DrawerActivity
 import com.example.artur.sandbox.ui.login.LoginActivity
 import com.example.artur.sandbox.ui.map.*
 import com.example.artur.sandbox.ui.master.ItemListActivity
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         current_location_button.setOnClickListener { startActivity(Intent(this, CurrentLocationActivity::class.java)) }
         location_updates_button.setOnClickListener { startActivity(Intent(this, LocationUpdatesActivity::class.java)) }
         distance_tracker_button.setOnClickListener { startActivity(Intent(this, DistanceTrackerActivity::class.java)) }
+        drawer_button.setOnClickListener { startActivity(Intent(Intent(this, DrawerActivity::class.java))) }
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
