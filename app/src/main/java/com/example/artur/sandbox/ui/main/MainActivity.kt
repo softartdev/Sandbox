@@ -15,6 +15,7 @@ import com.example.artur.sandbox.ui.login.LoginActivity
 import com.example.artur.sandbox.ui.map.*
 import com.example.artur.sandbox.ui.master.ItemListActivity
 import com.example.artur.sandbox.ui.settings.SettingsActivity
+import com.example.artur.sandbox.ui.tab.TabbedActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         location_updates_button.setOnClickListener { startActivity(Intent(this, LocationUpdatesActivity::class.java)) }
         distance_tracker_button.setOnClickListener { startActivity(Intent(this, DistanceTrackerActivity::class.java)) }
         drawer_button.setOnClickListener { startActivity(Intent(Intent(this, DrawerActivity::class.java))) }
+        tabbed_button.setOnClickListener { startActivity(Intent(Intent(this, TabbedActivity::class.java))) }
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
