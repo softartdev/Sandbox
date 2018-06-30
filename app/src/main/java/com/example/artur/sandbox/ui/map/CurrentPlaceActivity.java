@@ -9,7 +9,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,23 +27,20 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import timber.log.Timber;
+
 /**
  * An activity that displays a map showing the place at the device's current location.
  */
 public class CurrentPlaceActivity extends AppCompatActivity implements OnMapReadyCallback {
-    private static final String TAG = CurrentPlaceActivity.class.getSimpleName();
     private GoogleMap mMap;
-    private CameraPosition mCameraPosition;
 
-    // The entry points to the Places API.
-    private GeoDataClient mGeoDataClient;
     private PlaceDetectionClient mPlaceDetectionClient;
 
     // The entry point to the Fused Location Provider.
@@ -62,7 +58,6 @@ public class CurrentPlaceActivity extends AppCompatActivity implements OnMapRead
     private Location mLastKnownLocation;
 
     // Keys for storing activity state.
-    private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
 
     // Used for selecting the current place.
@@ -79,14 +74,13 @@ public class CurrentPlaceActivity extends AppCompatActivity implements OnMapRead
         // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
             mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
-            mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
 
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_current_place);
 
         // Construct a GeoDataClient.
-        mGeoDataClient = Places.getGeoDataClient(this, null);
+        GeoDataClient mGeoDataClient = Places.getGeoDataClient(this, null);
 
         // Construct a PlaceDetectionClient.
         mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
@@ -96,7 +90,9 @@ public class CurrentPlaceActivity extends AppCompatActivity implements OnMapRead
 
         // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
     }
 
     /**
@@ -105,7 +101,6 @@ public class CurrentPlaceActivity extends AppCompatActivity implements OnMapRead
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (mMap != null) {
-            outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
             outState.putParcelable(KEY_LOCATION, mLastKnownLocation);
             super.onSaveInstanceState(outState);
         }
@@ -211,20 +206,20 @@ public class CurrentPlaceActivity extends AppCompatActivity implements OnMapRead
                                 showDefaultLocation();
                             }
                         } else {
-                            Log.e(TAG, "Exception: %s", task.getException());
+                            Timber.e(task.getException());
                             showDefaultLocation();
                         }
                     }
 
                     private void showDefaultLocation() {
-                        Log.d(TAG, "Current location is null. Using defaults.");
+                        Timber.d("Current location is null. Using defaults.");
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
                         mMap.getUiSettings().setMyLocationButtonEnabled(false);
                     }
                 });
             }
         } catch (SecurityException e) {
-            Log.e("Exception: %s", e.getMessage());
+            Timber.e(e);
         }
     }
 
@@ -316,12 +311,12 @@ public class CurrentPlaceActivity extends AppCompatActivity implements OnMapRead
                     openPlacesDialog();
 
                 } else {
-                    Log.e(TAG, "Exception: %s", task.getException());
+                    Timber.e(task.getException(), "Exception:");
                 }
             });
         } else {
             // The user has not granted permission.
-            Log.i(TAG, "The user did not grant location permission.");
+            Timber.i("The user did not grant location permission.");
 
             // Add a default marker, because the user hasn't selected a place.
             mMap.addMarker(new MarkerOptions()
@@ -384,7 +379,7 @@ public class CurrentPlaceActivity extends AppCompatActivity implements OnMapRead
                 getLocationPermission();
             }
         } catch (SecurityException e) {
-            Log.e("Exception: %s", e.getMessage());
+            Timber.e(e);
         }
     }
 }

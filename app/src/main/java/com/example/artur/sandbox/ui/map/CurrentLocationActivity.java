@@ -27,7 +27,9 @@ public class CurrentLocationActivity extends AppCompatActivity implements OnMapR
         setContentView(R.layout.activity_current_location);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
     }
