@@ -25,6 +25,12 @@
     <string name="latitude_label">Latitude</string>
     <string name="longitude_label">Longitude</string>
     <string name="last_update_time_label">Last location update time</string>
+    <string name="broadcast">Broadcast</string>
+    <string name="send_broadcast">Send broadcast</string>
+    <string name="register_receiver">Register receiver</string>
+    <string name="unregister_receiver">Unregister receiver</string>
+    <string name="type_massage">Type your message here</string>
+    <string name="default_message">Default message</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -98,7 +104,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="multi_select_list_preference_default_value"/>
+    <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
