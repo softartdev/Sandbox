@@ -31,6 +31,10 @@
     <string name="unregister_receiver">Unregister receiver</string>
     <string name="type_massage">Type your message here</string>
     <string name="default_message">Default message</string>
+    <string name="repeating">Repeating</string>
+    <string name="cancel">Cancel</string>
+    <string name="seconds">Seconds</string>
+    <string name="default_seconds_value">5</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

@@ -1,9 +1,12 @@
 package com.example.artur.sandbox.ui.bc
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.example.artur.sandbox.R
 import com.example.artur.sandbox.receiver.SandboxReceiver
 import kotlinx.android.synthetic.main.activity_bc.*
@@ -25,6 +28,28 @@ class BcActivity : AppCompatActivity() {
             val intent = Intent(SandboxReceiver.RECEIVER_ACTION_NAME)
             intent.putExtra(SandboxReceiver.RECEIVER_MESSAGE_NAME, bc_message_edit_text.text.toString())
             sendBroadcast(intent)
+        }
+
+        bc_toggle_button.setOnCheckedChangeListener { _, isChecked -> repeatReceiver(isChecked) }
+    }
+
+    private fun repeatReceiver(repeat: Boolean) {
+//        val intent = Intent(this, SandboxReceiver::class.java)
+//        intent.action = SandboxReceiver.RECEIVER_ACTION_NAME
+        val intent = Intent(SandboxReceiver.RECEIVER_ACTION_NAME)
+        intent.putExtra(SandboxReceiver.RECEIVER_MESSAGE_NAME, bc_message_edit_text.text.toString())
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        val flagNoCreatePendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_NO_CREATE)
+        if (repeat && flagNoCreatePendingIntent == null) {
+            val flagCancelCurrentPendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+            val intervalSeconds: Long = bc_interval_edit_text.text.toString().toLong()
+            val intervalMillis = intervalSeconds * 1000
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), intervalMillis, flagCancelCurrentPendingIntent)
+        } else {
+            alarmManager.cancel(flagNoCreatePendingIntent)
+            flagNoCreatePendingIntent.cancel()
         }
     }
 
