@@ -2,9 +2,9 @@ package com.example.artur.sandbox.ui.map
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
+import androidx.core.app.ActivityCompat
 import com.example.artur.sandbox.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
