@@ -12,6 +12,7 @@ import com.example.artur.sandbox.R
 import com.example.artur.sandbox.ui.bc.BcActivity
 import com.example.artur.sandbox.ui.distance.DistanceTrackerActivity
 import com.example.artur.sandbox.ui.drawer.DrawerActivity
+import com.example.artur.sandbox.ui.fcm.FcmActivity
 import com.example.artur.sandbox.ui.login.LoginActivity
 import com.example.artur.sandbox.ui.map.*
 import com.example.artur.sandbox.ui.master.ItemListActivity
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         drawer_button.setOnClickListener { startActivity(Intent(Intent(this, DrawerActivity::class.java))) }
         tabbed_button.setOnClickListener { startActivity(Intent(Intent(this, TabbedActivity::class.java))) }
         bc_button.setOnClickListener { startActivity(Intent(this, BcActivity::class.java)) }
-
+        fcm_button.setOnClickListener { startActivity(Intent(this, FcmActivity::class.java)) }
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()

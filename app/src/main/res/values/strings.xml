@@ -132,4 +132,15 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="default_notification_channel_id" translatable="false">sandbox_notification_channel_id</string>
+    <string name="default_notification_channel_name" translatable="true">Sandbox Notification Channel Name</string>
+    <string name="firebase_cloud_messaging">Firebase Cloud Messaging</string>
+    <string name="quickstart_message">Click the SUBSCRIBE TO SANDBOX button below to subscribe to the sandbox topic. Messages sent to the sandbox topic will be received. The LOG TOKEN button logs the InstanceID token to logcat.</string>
+    <string name="subscribe_to_sandbox">Subscribe To Sandbox</string>
+    <string name="log_token">Log Token</string>
+    <string name="msg_subscribed">Subscribed to sandbox topic</string>
+    <string name="msg_subscribe_failed">Failed to subscribe to sandbox topic</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+    <string name="fcm_message">FCM Message</string>
 </resources>
