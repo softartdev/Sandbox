@@ -21,7 +21,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * the previous token had been compromised. Note that this is called when the InstanceID token
      * is initially generated so this is where you would retrieve the token.
      */
-    override fun onNewToken(token: String?) {
+    override fun onNewToken(token: String) {
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
@@ -46,7 +46,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
      */
     // [START receive_message]
-    override fun onMessageReceived(remoteMessage: RemoteMessage?) {
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // [START_EXCLUDE]
         // There are two types of messages data messages and notification messages. Data messages are handled
         // here in onMessageReceived whether the app is in the foreground or background. Data messages are the type
@@ -58,21 +58,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         // [END_EXCLUDE]
 
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Timber.d("From: ${remoteMessage?.from}")
+        Timber.d("From: ${remoteMessage.from}")
 
         // Check if message contains a data payload.
-        remoteMessage?.data?.isNotEmpty()?.let {
-            Timber.d("Message data payload: %s", remoteMessage.data)
-        }
+        Timber.d("Message data payload: %s", remoteMessage.data)
 
         // Check if message contains a notification payload.
-        remoteMessage?.notification?.let {
-            Timber.d("Message Notification Body: ${it.body}")
-        }
+        Timber.d("Message Notification Body: ${remoteMessage.notification?.body}")
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
-        sendNotification(remoteMessage?.notification)
+        sendNotification(remoteMessage.notification)
     }
 
     /**
